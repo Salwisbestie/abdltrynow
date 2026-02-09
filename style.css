@@ -64,10 +64,28 @@ body {
   background: linear-gradient(to right,#ff758c,#9d50bb);
   z-index: 9999;
  transition: opacity 0.5s ease; 
+ position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-#openBtn:hover {
-  opacity: 1 !important;
+#openBtn.dim {
+  opacity: 0.5;
+}
+
+#openBtn:active {
+  opacity: 1;
+}
+
+#openBtn.up {
+  bottom: 120px; /* ajusta según altura del mensaje */
+}
+
+@media (max-width: 600px) {
+  #openBtn {
+    bottom: 120px;
+  }
 }
 
 /* ===== POPUPS ===== */
@@ -152,6 +170,6 @@ body {
   }
 }
 .popup video {
-  opacity: 0.6; /* ajusta a tu gusto: 0.4 muy suave / 0.8 casi sólido */
+  opacity: 1; /* ajusta a tu gusto: 0.4 muy suave / 0.8 casi sólido */
 }
 

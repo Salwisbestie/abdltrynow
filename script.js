@@ -130,7 +130,7 @@ if (mensajesMostrados >= 10) {
         // En móviles, play() debe llamarse inmediatamente en el click
         bgVideo.play().catch(e => console.log("Error video:", e));
         bgAudio.play().catch(e => console.log("Error audio:", e));
-        btn.style.opacity = "0.5"; 
+        btn.classList.add("dim"); 
         primeraVez = false;
     }
   if (popupsActivos.length >= 4) {
@@ -202,12 +202,14 @@ function mostrarMensaje(html) {
     </div>
   `;
   mensajeActivo = true;
+    btn.classList.add("up");
 }
 
 function borrarMensaje() {
   if (mensajeActivo) {
     messageZone.innerHTML = "";
     mensajeActivo = false;
+    btn.classList.remove("up");
   }
 }
 
