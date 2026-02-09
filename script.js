@@ -1,6 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===== CONFIG ===== */
+const mensajesAleatorios = [
+"Hump your diaper for me little one",
+"Wittle babys always have to be pacified",
+"Take a good gulp of ur feeding bottle",
+"Deep sniff / Weed hit for needy baby",
+"Stop rubbing your diapees for 30 seconds",
+"Crawl like a good baby gurl for 10 seconds",
+"Are you wearing ur baby outfit? Put it on if not",
+"Beg for more in baby talk",
+"Turn down ur vibe speed",
+"Turn down up vibe speed",
+"You have 60 sec to pee ur diapees. If not, you have to roll for 2 more tasks",
+"You have 60 sec to poo ur diapees. If not, you have to roll for 2 more tasks",
+"Rub yourself dumb wittle girl",
+"Smol girls dont need bath",
+"Brain is only for big girls",
+"Make dumb wittle baby sounds",
+"Suck ur thumbie",
+
+];
+
+
+const mensajePregunta = "¿Do you wanna cum? 💜";
+
+const mensajeFijoFinal = "💖 Make a biiig mess in those diapees 💖";
 
   const videoFondoLocal = "media/videos/fondo.mp4";
   const audioFondo = "media/audio/fondo.mp3";
@@ -15,16 +40,28 @@ document.addEventListener("DOMContentLoaded", () => {
       { tipo: "video", src: "media/videos/oso6.mp4" },
       { tipo: "video", src: "media/videos/oso7.mp4" },
       { tipo: "video", src: "media/videos/oso8.mp4" },
-      { tipo: "video", src: "media/videos/oso9.mp4" }
-
-
-    ]
-  };
+      { tipo: "video", src: "media/videos/oso9.mp4" },
+      { tipo: "video", src: "media/videos/oso10.mp4"},
+      { tipo: "video", src: "media/videos/oso11.mp4"},      
+      { tipo: "video", src: "media/videos/oso12.mp4"},
+      { tipo: "video", src: "media/videos/oso13.mp4" },
+      { tipo: "video", src: "media/videos/oso14.mp4"},
+      { tipo: "video", src: "media/videos/oso15.mp4"}, 
+      { tipo: "video", src: "media/videos/oso16.mp4" },
+      { tipo: "video", src: "media/videos/oso17.mp4"},
+      { tipo: "video", src: "media/videos/oso18.mp4"}, 
+      { tipo: "video", src: "media/videos/oso19.mp4"}
+ ] };
 
   /* ===== ESTADO ===== */
-  let categoriaActual = null;
-  let primeraVez = true;
-  let zIndex = 10;
+let categoriaActual = null;
+let primeraVez = true;
+let zIndex = 10;
+let popupsActivos = []; 
+let clickCount = 0;
+let mensajesMostrados = 0;
+let modoEspecial = false;
+let mensajeActivo = false;
 
   /* ===== ELEMENTOS ===== */
   const selector = document.getElementById("selector");
@@ -34,6 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgVideo = document.getElementById("bgVideo");
   const bgWrap = document.getElementById("videoBackground");
   const bgAudio = document.getElementById("bgAudio");
+const messageZone = document.getElementById("messageZone");
+
 
   /* ===== SELECCIÓN ===== */
 document.querySelectorAll(".selector-btn").forEach(b => {
@@ -59,6 +98,29 @@ document.querySelectorAll(".selector-btn").forEach(b => {
 
   /* ===== POPUPS ===== */
 btn.addEventListener("click", () => {
+borrarMensaje();
+
+clickCount++;
+
+if (clickCount % 3 === 0) {
+
+  if (modoEspecial) {
+    crearPopupTexto(mensajeFijoFinal);
+    return;
+  }
+
+  mensajesMostrados++;
+
+if (mensajesMostrados >= 10) {
+    mostrarPreguntaSiNo();
+  } else {
+    const texto = mensajesAleatorios[
+      Math.floor(Math.random() * mensajesAleatorios.length)
+    ];
+    mostrarMensaje(texto);
+  }
+}
+
     if (!categoriaActual || !libreria[categoriaActual]) return;
 
     if (primeraVez) {
@@ -68,9 +130,13 @@ btn.addEventListener("click", () => {
         // En móviles, play() debe llamarse inmediatamente en el click
         bgVideo.play().catch(e => console.log("Error video:", e));
         bgAudio.play().catch(e => console.log("Error audio:", e));
+        btn.style.opacity = "0.5"; 
         primeraVez = false;
     }
-
+  if (popupsActivos.length >= 4) {
+        const viejo = popupsActivos.shift(); // Saca el primero de la lista (el más antiguo)
+        if (viejo) viejo.remove(); // Lo elimina del DOM
+    }
     const lista = libreria[categoriaActual];
     const elegido = lista[Math.floor(Math.random() * lista.length)];
 
@@ -119,12 +185,59 @@ popup.style.height = popupHeight + "px";
 
     popup.querySelector(".close").onclick = e => {
         e.stopPropagation();
+popupsActivos = popupsActivos.filter(p => p !== popup);
         popup.remove();
     };
 
     popupZone.appendChild(popup);
+popupsActivos.push(popup);
 });
 
-});
 
+  /* ===== MENSAJES ===== */
+function mostrarMensaje(html) {
+  messageZone.innerHTML = `
+    <div class="messageBox">
+      ${html}
+    </div>
+  `;
+  mensajeActivo = true;
+}
+
+function borrarMensaje() {
+  if (mensajeActivo) {
+    messageZone.innerHTML = "";
+    mensajeActivo = false;
+  }
+}
+
+
+
+function mostrarPreguntaSiNo() {
+  mostrarMensaje(`
+    <p>${mensajePregunta}</p>
+    <div>
+      <button id="btnSi">Sí</button>
+      <button id="btnNo">No</button>
+    </div>
+  `);
+
+  setTimeout(() => {
+    document.getElementById("btnSi").onclick = () => {
+      modoEspecial = true;
+      mostrarMensaje(mensajeFijoFinal);
+    };
+
+    document.getElementById("btnNo").onclick = () => {
+      mensajesMostrados = 0;
+      borrarMensaje();
+    };
+  }, 50);
+}
+
+
+
+
+
+});
 
