@@ -19,7 +19,20 @@ const mensajesAleatorios = [
 "Brain is only for big girls",
 "Make dumb wittle baby sounds",
 "Suck ur thumbie",
-
+"Go and have some milkies",
+"Wear a cute wittle accesory in ur head",
+"Go put some high knee socks, babys cant be cold (unless u put onesie)",
+"Baaad wittle girl, spank ur ass 5 times",
+"Put a cute onesie to feel even littier wittle baby",
+"Edge once",
+"Edge twice for me dumbie",
+"Groceries are going to be diapered",
+"Dont change ur diapees even if they messy for at least 10 min",
+"Put on some new diapees",
+"No more vibe for wittle baby, start dubbing urself manually",
+"Put on a buttplug and keep going",
+"Go to the shower and wet ur diapees from inside dumb baby",
+"Start drooling like a wittle dumbo"
 ];
 
 
@@ -102,7 +115,7 @@ borrarMensaje();
 
 clickCount++;
 
-if (clickCount % 3 === 0) {
+if (clickCount % 4 === 0) {
 
   if (modoEspecial) {
     crearPopupTexto(mensajeFijoFinal);
@@ -242,4 +255,5 @@ function mostrarPreguntaSiNo() {
 
 
 });
+
 
