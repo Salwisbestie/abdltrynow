@@ -63,7 +63,21 @@ const mensajeFijoFinal = "💖 Make a biiig mess in those diapees 💖";
       { tipo: "video", src: "media/videos/oso16.mp4" },
       { tipo: "video", src: "media/videos/oso17.mp4"},
       { tipo: "video", src: "media/videos/oso18.mp4"}, 
-      { tipo: "video", src: "media/videos/oso19.mp4"}
+      { tipo: "video", src: "media/videos/oso19.mp4"},
+      { tipo: "video", src: "media/videos/oso20.mp4"},
+      { tipo: "video", src: "media/videos/oso21.mp4"},      
+      { tipo: "video", src: "media/videos/oso22.mp4"},
+      { tipo: "video", src: "media/videos/oso23.mp4" },
+      { tipo: "video", src: "media/videos/oso24.mp4"},
+      { tipo: "video", src: "media/videos/oso25.mp4"}, 
+      { tipo: "video", src: "media/videos/oso26.mp4" },
+      { tipo: "video", src: "media/videos/oso27.mp4"},
+      { tipo: "video", src: "media/videos/oso28.mp4"}, 
+      { tipo: "video", src: "media/videos/oso29.mp4"},
+      { tipo: "video", src: "media/videos/oso30.mp4"},
+      { tipo: "video", src: "media/videos/oso31.mp4"},      
+      { tipo: "video", src: "media/videos/oso32.mp4"},
+      { tipo: "video", src: "media/videos/oso33.mp4" }
  ] };
 
   /* ===== ESTADO ===== */
@@ -255,5 +269,6 @@ function mostrarPreguntaSiNo() {
 
 
 });
+
 
 
